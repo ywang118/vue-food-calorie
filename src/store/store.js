@@ -71,6 +71,7 @@ const mutations = {
     },
     ADD_NEW_TO_CART(state,{foodId,orderCal,quantity}){
         const record = state.cartItems.find(e=>e.foodId==foodId);
+        
         if (record){
             record.quantity += quantity
         } else {
@@ -104,7 +105,9 @@ const actions = {
     },
     removeSingleItem:({commit,state},product)=>{
         const item = state.cartItems.find(c=>c.foodId == product.foodId)
-        commit('REMOVE_CART',item)
+        const itemIndex  = state.cartItems.indexOf(item)
+        console.log('delete item index:', itemIndex)
+        commit('REMOVE_CART',itemIndex)
     },
     addToCart: ({commit,state},product)=>  {
         const cartItem = state.cartItems.find(
