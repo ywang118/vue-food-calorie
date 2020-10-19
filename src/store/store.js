@@ -40,6 +40,7 @@ const mutations = {
     },
     REMOVE_CART(state, itemIndex) {
         state.cartItems.splice(itemIndex, 1);
+       
     },
     // SET_POST(state,post){
     //     state.productNowSelected = 'post'
@@ -106,8 +107,11 @@ const actions = {
     removeSingleItem:({commit,state},product)=>{
         const item = state.cartItems.find(c=>c.foodId == product.foodId)
         const itemIndex  = state.cartItems.indexOf(item)
-        console.log('delete item index:', itemIndex)
+        
         commit('REMOVE_CART',itemIndex)
+        console.log('delete item cal:', item.productCal)
+        console.log('delete item  quantity:', item.productCal)
+        state.dailyCal += item.productCal *  item.quantity
     },
     addToCart: ({commit,state},product)=>  {
         const cartItem = state.cartItems.find(
